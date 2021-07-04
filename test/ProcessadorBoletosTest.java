@@ -1,8 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class ProcessadorBoletosTest {
@@ -20,12 +19,12 @@ class ProcessadorBoletosTest {
 			total += boleto.getValorPago();
 		}
 		
-		if(total >= fatura.getTotal()) {
-			fatura.setStatus = "PAGA";
+		Assertions.assertTrue(total >= fatura.getTotal());
+		if(total >= fatura.getTotal()) {			
 			Set<Fatura> pagamentosFaturas = new HashSet<>();			
-			pagamentos.forEach(p -> pagamentosFaturas.add(new Fatura(p.getData().toString(), p.getValorPago(), fatura.getNomeCliente())));			
-		}		
-		System.out.println(total);
+			pagamentos.forEach(p -> pagamentosFaturas.add(new Fatura(p.getData().toString(), p.getValorPago(), fatura.getNomeCliente())));
+			System.out.println("PAGA");
+		}
 	}
 
 	@Test
@@ -42,12 +41,12 @@ class ProcessadorBoletosTest {
 			total += boleto.getValorPago();
 		}
 
-		if (total >= fatura.getTotal()) {
-			fatura.setStatus = "PAGA";
+		Assertions.assertTrue(total >= fatura.getTotal());
+		if (total >= fatura.getTotal()) {			
 			Set<Fatura> pagamentosFaturas = new HashSet<>();			
-			pagamentos.forEach(p -> pagamentosFaturas.add(new Fatura(p.getData().toString(), p.getValorPago(), fatura.getNomeCliente())));
-		}
-		System.out.println(total);
+			pagamentos.forEach(p -> pagamentosFaturas.add(new Fatura(p.getData(), p.getValorPago(), fatura.getNomeCliente())));
+			System.out.println("PAGA");
+		}		
 	}
 
 	@Test
@@ -63,14 +62,11 @@ class ProcessadorBoletosTest {
 			total += boleto.getValorPago();
 		}
 
-		if (total >= fatura.getTotal()) {
-			fatura.setStatus = "PAGA";
-		} else {
+		Assertions.assertTrue(total < fatura.getTotal());
+		if (total < fatura.getTotal()) {			
 			Set<Boleto> pagamentosBoletos = new HashSet<>();			
-			pagamentos.forEach(p -> pagamentosBoletos.add(p));
-		}
-
-		System.out.println(total);
+			pagamentos.forEach(p -> pagamentosBoletos.add(p));			
+		}		
 	}
 
 }

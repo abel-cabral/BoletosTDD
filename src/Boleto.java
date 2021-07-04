@@ -13,8 +13,9 @@ public class Boleto {
 		this.valorPago = valorPago;
 	}
 
-	public Date getData() {
-		return data;
+	public String getData() {
+		SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy");
+		return sp.format(data);
 	}
 
 	public void setData(String data) {

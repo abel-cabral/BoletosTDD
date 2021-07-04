@@ -5,7 +5,7 @@ import java.util.Date;
 public class Fatura {
 	private Date data;
 	private Double total;
-	private String nomeCliente;
+	private String nomeCliente;	
 			
 	public Fatura(String data, Double total, String nomeCliente) {
 		this.setData(data);
@@ -13,8 +13,9 @@ public class Fatura {
 		this.nomeCliente = nomeCliente;
 	}
 	
-	public Date getData() {
-		return data;
+	public String getData() {
+		SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy");
+		return sp.format(data);
 	}
 
 	public void setData(String data) {
