@@ -1,3 +1,5 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Boleto {
@@ -5,14 +7,23 @@ public class Boleto {
 	private String codigoBoleto;
 	private Double valorPago;
 	
-	public Boleto() { }
+	public Boleto(String data, String codigoBoleto, Double valorPago) {
+		this.setData(data);
+		this.codigoBoleto = codigoBoleto;
+		this.valorPago = valorPago;
+	}
 
 	public Date getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setData(String data) {
+		SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			this.data = sp.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getCodigoBoleto() {

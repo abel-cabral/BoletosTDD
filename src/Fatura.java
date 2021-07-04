@@ -1,3 +1,5 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Fatura {
@@ -5,8 +7,8 @@ public class Fatura {
 	private Double total;
 	private String nomeCliente;
 			
-	public Fatura(Date data, Double total, String nomeCliente) {
-		this.data = data;
+	public Fatura(String data, Double total, String nomeCliente) {
+		this.setData(data);
 		this.total = total;
 		this.nomeCliente = nomeCliente;
 	}
@@ -14,8 +16,14 @@ public class Fatura {
 	public Date getData() {
 		return data;
 	}
-	public void setData(Date data) {
-		this.data = data;
+
+	public void setData(String data) {
+		SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			this.data = sp.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	public Double getTotal() {
 		return total;
